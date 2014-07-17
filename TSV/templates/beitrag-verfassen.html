@@ -1,0 +1,51 @@
+<ion-view title="Beitrag erfassen">
+<!--  Navigation -->
+<ion-nav-buttons side="left">
+<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons> 
+<ion-nav-buttons side="right">
+<button class="button button-icon icon ion-ios7-gear"></button>
+<button menu-toggle="right" class="button button-icon icon ion-ios7-contact"></button>
+</ion-nav-buttons> 
+ 
+<ion-content class="has-header has-footer" padding="true" has-bouncing="true">
+
+		<div class="list">
+		 <label class="item item-input item-stacked-label">
+			<span class="input-label">Id</span>
+			<input ng-model="beitrag.id" type="text" placeholder="">
+		  </label>
+		 <label class="item item-input item-stacked-label">
+			<span class="input-label">Author</span>
+			<input type="text" ng-model="beitrag.author" placeholder="">
+		  </label>
+		   <label class="item item-input item-stacked-label">
+			<span class="input-label">Datum</span>
+		 	<input type="text" placeholder="" ng-model="beitrag.date" >
+		  </label>
+		  <label class="item item-input item-stacked-label">
+			<span class="input-label">Titel</span>
+			<input type="text" placeholder="" ng-model="beitrag.title">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+			<span class="input-label">Kurztext</span>
+			<textarea rows="2" maxlength="50" ng-model="beitrag.teaser"></textarea>
+		  </label>
+		  <div class="item">
+            <button class="button" ng-click="takePicture()">Foto</button>
+		  </div>
+		  <label class="item item-input item-stacked-label">
+			<span class="input-label">Artikeltext (HTML)</span>
+			<textarea rows="20" ng-model="beitrag.text"></textarea>
+		  </label>
+		</div>
+</ion-content> 
+
+<ion-footer-bar class="bar-positive">
+	<div class="button-bar">
+		<button class="button" ng-click="save()">Save</button>
+		<button class="button" ng-click="cancel()">Abbrechen</button>
+		<button class="button" ng-click="help()">Hilfe</button>
+	</div>
+</ion-footer-bar>
+</ion-view>

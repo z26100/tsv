@@ -1,0 +1,66 @@
+<ion-view title="HBV Ergebnisse">
+<!--  Navigation --> 
+<ion-nav-buttons side="left">
+<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+</ion-nav-buttons> <ion-nav-buttons side="right">
+<button class="button button-icon icon ion-ios7-gear"></button>
+<button menu-toggle="right"
+	class="button button-icon icon ion-ios7-contact"></button>
+</ion-nav-buttons> 
+
+<ion-content class="has-header" padding="false" has-bouncing="true">
+
+<div id="hbvcard" class="list card">
+<div class="item item-divider">
+		<p>Tabelle</p>
+</div>
+<div id="hbvTabelle" class="item item-body">
+	<div ng-repeat="item in tabelle">
+		<div class="row ">
+			<div class="col col-10">{{item.rang}}</div>
+			<div class="col col-33">
+				<div ng-if="item.iconTeam">
+					<img ng-src="{{item.iconTeam}}" alt="{{item.team}}">
+				</div>
+				{{item.team}}
+			</div>
+		<div class="col col-10">{{item.spiele}}</div>
+		<div class="col col-10">{{item.punkte}}</div>
+		<div class="col col-20">{{item.koerbe}}</div>
+		<div class="col col-10">{{item.differenz}}</div>
+		</div>
+	</div>
+</div>
+<div class="item item-divider">
+		<p>Ergebnisse</p>
+</div>
+<div id="hbvErgebnisse" class="item item-body">
+	<div ng-repeat="item in ergebnisse.spiele | filter:team.name">
+		<div class="row ">
+			<div class="col">{{item.spieltag}}</div>
+			<div class="col col-33">
+				<div ng-if="item.iconHeim">
+					<img ng-src="{{item.iconHeim}}" alt="{{item.heim}}">
+				</div>
+				{{item.heim}}
+			</div>
+			<div class="col col-33">
+				<div ng-if="item.iconGast">
+					<img ng-src="{{item.iconGast}}" alt="{{item.gast}}">
+				</div>
+				{{item.gast}}
+			</div>
+			<div class="col col-20">{{item.endstand}}</div>
+		</div>
+	</div>
+	<label class="item item-input item-select">
+		<div class="input-label">Filter</div>
+	<select ng-model="team"
+		ng-options="team.label for team in teams">
+			<option value="">-- Kein Filter --</option>
+			<option ng-repeat="item in teams">{{item.label}}</option>
+	</select>
+	</label>	
+</div>
+</div>
+</ion-content> </ion-view>

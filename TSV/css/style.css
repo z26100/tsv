@@ -1,0 +1,67 @@
+/* Empty. Add your own CSS if you like */
+.list {
+	margin: 0px;
+}
+
+#hbvSpieltage .row {
+	margin: 0px;
+    padding:0px; 
+}
+.hbvSpieltag {
+    border-top:solid;
+    border-width:1px;
+    border-color:rgb(221, 221, 221);
+}
+.hbvSpieltage col {
+    padding:0px;
+
+}
+
+#liveScores div {
+	background: highlight;
+}
+
+div .liveScore {
+	padding: 0px;
+	text-align: center;
+}
+div .upcoming {
+	padding: 0px;
+	text-align: center;
+}
+.item-thumbnail-left>img:first-child {
+	min-height: 80px;
+ 	min-width:100px;
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.item .news-headline {
+	padding-left: 10px;
+}
+
+.right-align {
+	text-align:right;
+}
+
+#teamDetail {
+    padding-left:2px;
+    padding-right:0px;
+}
+
+.item-body {
+    padding:5px;
+}
+
+.item {
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+    margin: 0px;
+}
+
+
+#hbvCard, #hbvTabelle, #hbvErgebnisse , #hbvSpieltage {
+    padding:2;
+    font-size: 85%;   
+}
