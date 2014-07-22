@@ -1,14 +1,16 @@
 angular
 		.module('starter.controllers', [])
-
-		.controller('TabCtrl',	function($scope, $ionicSideMenuDelegate, JSONResource) {
+		.controller('DefaultCtrl',	function($scope) {
+			$scope.client = '0001';
+        })
+        .controller('TabCtrl',	function($scope, $ionicSideMenuDelegate, JSONResource) {
 		/***************************
     		Left and Right Sidemenu
     	****************************/
-            JSONResource.load('leftMenu').then(function(d) {
+            JSONResource.get('leftMenu').then(function(d) {
                 $scope.leftMenu = d;
             });		
-			JSONResource.load('rightMenu').then(function(d) {
+			JSONResource.get('rightMenu').then(function(d) {
                 $scope.rightMenu = d;
             });
             $scope.toggleLeftSideMenu = function() {
@@ -30,13 +32,13 @@ angular
 			Neuigkeiten und Artikel
 		*****************************/
 		.controller('NewsCtrl',	function($scope, JSONResource) {
-             JSONResource.load('news').then(function(d) {
+             JSONResource.get('news').then(function(d) {
                 $scope.news = d;
         	 });	
 		})
 		.controller('ArticleCtrl', function($scope, $stateParams, JSONResource, PartialResource) {
              $scope.partial = PartialResource.load($stateParams.newsId);
-             JSONResource.load('articles/' + $stateParams.newsId).then(function(d) {
+             JSONResource.get('articles/' + $stateParams.newsId).then(function(d) {
     	          $scope.article = d;
 	    	 });	
 		})
@@ -83,14 +85,18 @@ angular
                 $scope.kontakte = d;
             });
 		})
-		.controller('LinksCtrl', function($scope, PartialResource, JSONResource) {            
-            $scope.partial = PartialResource.load('links');
-            JSONResource.load('links').then(function(d) {
-                $scope.links = d;
+		.controller('LinksCtrl', function($scope, $sce, JSONResource) {            
+            JSONResource.get('partials/links').then(function(d) {
+                 $scope.partial = d;
+            });
+             JSONResource.get('links').then(function(d) {
+                 $scope.links = d;
             });
 		})
-		.controller('ImpressumCtrl', function($scope, PartialResource) {
-       		 $scope.impressum = PartialResource.load('impressum');
+		.controller('ImpressumCtrl', function($scope, $sce, JSONResource) {
+            JSONResource.get('partials/impressum').then(function(d) {
+                 $scope.html = $sce.trustAsHtml(d.html);
+            });
 		})
 		.controller('AnfahrtCtrl', function($scope, PartialResource) {
        		 $scope.partial = PartialResource.load('anfahrt');
@@ -146,10 +152,24 @@ angular
 				$location.path('#' );
 			};
 		})
-		.directive('helloworld', function() {
-            return {
-    		  restrict: 'AE',
-      		  replace: 'true',
-      		  template: '<h3>Hello World!!</h3>'
-  			};
-  		});
+		.directive('partial', function($http, $compile) {
+  		return {
+       restrict: 'AE',
+    	link: function( scope, element, attrs ) {
+            console.log(attrs);
+     	var tpl, url = 'http://arnheiter.eu/mongodb/tsv/partials/'+attrs.id;
+        showTheDirective();
+     
+      function showTheDirective () {
+        if ( !tpl ) {
+          $http.get( url ).then( function ( response ) {
+            tpl = $compile( response.data.html )( scope );
+            console.log(tpl);
+            element.append(tpl);
+          });
+        }
+      }
+    }
+  };
+})
+;

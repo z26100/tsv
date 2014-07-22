@@ -35,7 +35,7 @@
 		<p>Ergebnisse</p>
 </div>
 <div id="hbvErgebnisse" class="item item-body">
-	<div ng-repeat="item in ergebnisse.spiele | filter:team.name">
+	<div ng-repeat="item in ergebnisse| filter:team.name">
 		<div class="row ">
 			<div class="col">{{item.spieltag}}</div>
 			<div class="col col-33">
