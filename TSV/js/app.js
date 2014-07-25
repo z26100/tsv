@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -42,7 +42,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/news',
       views: {
         'tab-news': {
-          templateUrl: 'templates/tab-news.html',
+          templateUrl: 'templates/tab-partial.html',
           controller: 'NewsCtrl'
         }
       }
@@ -58,16 +58,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.teams', {
-      url: '/teams',
+        url: '/teams/:client',
       views: {
         'tab-teams': {
-          templateUrl: 'templates/tab-teams.html',
+          templateUrl: 'templates/tab-partial.html',
           controller: 'TeamsCtrl'
         }
       }
     })
     .state('tab.team-detail', {
-      url: '/team/:teamId',
+        url: '/team/:client/:teamId',
       views: {
         'tab-teams': {
           templateUrl: 'templates/team-detail.html',
@@ -86,32 +86,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
     .state('kontakt', {
     	url: '/kontakt',
- 		templateUrl: 'templates/kontakt.html',
+ 		templateUrl: 'templates/partial.html',
  		controller: 'KontaktCtrl'
     })
     .state('impressum', {
-    	url: '/impressum',
- 		templateUrl: 'templates/impressum.html',
- 		controller: 'ImpressumCtrl'
+        url: '/p/:partial',
+ 		templateUrl: 'templates/partial.html',
+ 		controller: 'PartialCtrl'
     })
   	.state('links', {
     	url: '/links',
- 		templateUrl: 'templates/links.html',
+ 		templateUrl: 'templates/partial.html',
  		controller: 'LinksCtrl'
     })
   	.state('anfahrt', {
     	url: '/anfahrt',
- 		templateUrl: 'templates/anfahrt.html',
+ 		templateUrl: 'templates/partial.html',
  		controller: 'AnfahrtCtrl'
     })
   	.state('mitgliedschaft', {
     	url: '/mitgliedschaft',
- 		templateUrl: 'templates/mitgliedschaft.html',
+ 		templateUrl: 'templates/partial.html',
  		controller: 'MitgliedschaftCtrl'
     })
    .state('version', {
     	url: '/version',
- 		templateUrl: 'templates/version.html',
+ 		templateUrl: 'templates/partial.html',
  		controller: 'VersionCtrl'
     })
     .state('hbv', {
