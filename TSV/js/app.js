@@ -48,7 +48,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
       }
     })
     .state('tab.article', {
-      url: '/article/:newsId',
+      url: '/article/:id',
       views: {
         'tab-news': {
           templateUrl: 'templates/tab-article.html',
@@ -84,35 +84,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','s
         }
       }
     })
-    .state('kontakt', {
-    	url: '/kontakt',
- 		templateUrl: 'templates/partial.html',
- 		controller: 'KontaktCtrl'
-    })
-    .state('impressum', {
+    
+    .state('partial', {
         url: '/p/:partial',
  		templateUrl: 'templates/partial.html',
  		controller: 'PartialCtrl'
-    })
-  	.state('links', {
-    	url: '/links',
- 		templateUrl: 'templates/partial.html',
- 		controller: 'LinksCtrl'
-    })
-  	.state('anfahrt', {
-    	url: '/anfahrt',
- 		templateUrl: 'templates/partial.html',
- 		controller: 'AnfahrtCtrl'
-    })
-  	.state('mitgliedschaft', {
-    	url: '/mitgliedschaft',
- 		templateUrl: 'templates/partial.html',
- 		controller: 'MitgliedschaftCtrl'
-    })
-   .state('version', {
-    	url: '/version',
- 		templateUrl: 'templates/partial.html',
- 		controller: 'VersionCtrl'
     })
     .state('hbv', {
     	url: '/hbv',

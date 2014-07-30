@@ -38,11 +38,13 @@ angular
                 $scope.news = d;
         	 });	
 		})
-		.controller('ArticleCtrl', function($scope, $stateParams, JSONResource, PartialResource) {
-            $scope.partial = {id:'article', name:'Artikel'};
-            JSONResource.get('article').then(function(d) {
-                 $scope.article = d;
-            });
+		.controller('ArticleCtrl', function($scope, $stateParams, MongoDBResource) {
+            
+            MongoDBResource.loadById('0001', 'beitraege',$stateParams.id).then(function(d) {
+                $scope.article = d;
+                console.log("article = " + JSON.stringify($scope.article));
+            });	
+		
 //             $scope.partial = PartialResource.load($stateParams.newsId);
 //           JSONResource.get('articles/' + $stateParams.newsId).then(function(d) {
 //    	          $scope.article = d;
@@ -88,7 +90,7 @@ angular
                 console.log(d);
             });
 		})
-		.controller('PartialCtrl', function($scope, $stateParams) {
+		.controller('PartialCtrl', function($scope, $stateParams, MongoDBResource) {
             var id = $stateParams.partial;
             var name = id.charAt(0).toUpperCase() + id.slice(1);
             $scope.partial = {id: id, name: name};
